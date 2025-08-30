@@ -4,15 +4,9 @@ requests==2.31.0
 Pillow==10.1.0
 python-dotenv==1.0.0
 
-# ИИ библиотеки (совместимые версии)
-transformers==4.35.2
-torch==2.0.1
-diffusers==0.24.0
-accelerate==0.24.1
-safetensors==0.4.0
+# Для работы с API
+aiohttp==3.9.1
+asyncio-throttle==1.0.2
 
-# Hugging Face Hub (совместимая версия)
-huggingface-hub==0.19.4
-
-# NumPy (совместимая версия)
-numpy==1.24.3
+# Для логирования
+colorlog==6.8.0

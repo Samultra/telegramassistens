@@ -1,38 +1,14 @@
 #!/usr/bin/env python3
 """
-Главный файл приложения для деплоя DeepSeek бота на Railway
+Простая версия приложения для деплоя DeepSeek бота на Railway
 """
 
 import os
 import sys
-import threading
-from flask import Flask
+import asyncio
 from bot_deepseek import DeepSeekBot
 
-# Создаем Flask приложение для healthcheck
-app = Flask(__name__)
-
-@app.route('/')
-def health_check():
-    """Healthcheck endpoint для Railway"""
-    return {
-        "status": "healthy",
-        "bot": "DeepSeek Telegram Bot",
-        "message": "ЙОУ! Бот работает, философ-неудачник! 🎭"
-    }
-
-@app.route('/health')
-def health():
-    """Дополнительный healthcheck endpoint"""
-    return {"status": "ok"}
-
-def run_flask():
-    """Запуск Flask сервера"""
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-
-def run_bot():
-    """Запуск Telegram бота"""
+if __name__ == "__main__":
     # Проверяем наличие токена
     if not os.getenv('TELEGRAM_TOKEN'):
         print("❌ Ошибка: TELEGRAM_TOKEN не найден в переменных окружения!")
@@ -56,11 +32,3 @@ def run_bot():
     # Запускаем бота
     bot = DeepSeekBot()
     bot.run()
-
-if __name__ == "__main__":
-    # Запускаем Flask сервер в отдельном потоке
-    flask_thread = threading.Thread(target=run_flask, daemon=True)
-    flask_thread.start()
-    
-    # Запускаем бота в основном потоке
-    run_bot()

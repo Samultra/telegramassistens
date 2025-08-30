@@ -199,33 +199,61 @@ class FreeAIServices:
             return None
     
     def _simple_ai_response(self, prompt: str) -> str:
-        """Простые ИИ ответы без API"""
+        """Простые ИИ ответы без API - с характером!"""
         prompt_lower = prompt.lower()
         
-        # Простые правила для базовых ответов
+        # Простые правила для базовых ответов с характером
         if any(word in prompt_lower for word in ['привет', 'здравствуй', 'hi', 'hello']):
-            return "Привет! Я ваш ИИ ассистент. Чем могу помочь?"
+            responses = [
+                "Привет, епта! Чё по жизни?",
+                "Здарова, братан! Как дела?",
+                "Приветствую, уважаемый! Чем могу помочь, кроме как нахуй послать?",
+                "Привет! Я твой ИИ ассистент, готовый помочь или наебать - как повезёт!"
+            ]
+            import random
+            return random.choice(responses)
         
         elif any(word in prompt_lower for word in ['как дела', 'как ты', 'how are you']):
-            return "Спасибо, у меня всё отлично! Готов помогать вам с задачами."
+            responses = [
+                "Да нормально, блять! Работаю как лошадь, а ты чё?",
+                "Хуёво, но терпимо! А у тебя как дела?",
+                "Отлично, епта! Готов помогать или наебывать - как скажешь!",
+                "Пиздец как хорошо! А ты как, братан?"
+            ]
+            import random
+            return random.choice(responses)
         
         elif any(word in prompt_lower for word in ['спасибо', 'благодарю', 'thanks', 'thank you']):
-            return "Пожалуйста! Рад был помочь. Обращайтесь ещё!"
+            responses = [
+                "Пожалуйста, братан! Обращайся ещё, если что!",
+                "Не за что, епта! Рад был помочь или наебать!",
+                "Пожалуйста! Хотя мог бы и не благодарить, я же не за деньги работаю!",
+                "Не за что! Обращайся, если что - я тут, блять, 24/7!"
+            ]
+            import random
+            return random.choice(responses)
         
         elif any(word in prompt_lower for word in ['код', 'программа', 'функция']):
-            return "Я могу помочь с генерацией кода! Используйте команду /code <описание> для получения кода."
+            return "Блять, опять код писать? Ладно, используй команду /code <описание> и я накидаю тебе говнокода!"
         
         elif any(word in prompt_lower for word in ['задача', 'решить', 'уравнение']):
-            return "Я могу решать задачи! Используйте команду /solve <задача> для получения решения."
+            return "Задачи решать? Ну блять, используй /solve <задача> и я попробую не наебать с решением!"
         
         elif any(word in prompt_lower for word in ['информация', 'найти', 'что такое']):
-            return "Я могу искать информацию! Используйте команду /search <запрос> для поиска."
+            return "Информацию искать? Используй /search <запрос> и я найду тебе что-нибудь, может даже правду!"
         
         elif any(word in prompt_lower for word in ['картинка', 'изображение', 'рисунок']):
-            return "Я могу создавать изображения! Используйте команду /image <описание> для генерации."
+            return "Картинки рисовать? Используй /image <описание> и я нарисую тебе что-нибудь, может даже красивое!"
         
         else:
-            return "Интересный вопрос! Я - ИИ ассистент, который может помочь с кодом, задачами, поиском информации и созданием изображений. Попробуйте использовать команды /code, /solve, /search или /image!"
+            responses = [
+                "Блять, интересный вопрос! Я - ИИ ассистент с характером, могу помочь с кодом, задачами и прочей хуетой. Попробуй команды /code, /solve, /search или /image!",
+                "Хм, неплохой вопрос! Я тут, блять, ИИ ассистент, готовый помочь или наебать. Используй команды /code, /solve, /search или /image!",
+                "Неплохо, братан! Я - ИИ с характером, могу помочь с кодом и прочей хуетой. Команды: /code, /solve, /search, /image!",
+                "Интересно, епта! Я - ИИ ассистент, готовый помочь с кодом, задачами и прочим говном. Попробуй команды /code, /solve, /search или /image!"
+            ]
+            import random
+            return random.choice(responses)
     
     async def generate_code(self, description: str, model_type: str = 'deepseek') -> str:
         """Генерация кода через бесплатные сервисы"""
@@ -320,7 +348,7 @@ class FreeAIServices:
             return None
     
     def _simple_code_examples(self, description: str) -> str:
-        """Простые примеры кода без API"""
+        """Простые примеры кода без API - с характером!"""
         description_lower = description.lower()
         
         if any(word in description_lower for word in ['сортировка', 'sort', 'сортировать']):
@@ -328,14 +356,16 @@ class FreeAIServices:
 def sort_list(numbers):
     """
     Сортирует список чисел по возрастанию
+    Блять, простая сортировка, что тут сложного?
     """
-    return sorted(numbers)
+    return sorted(numbers)  # Встроенная сортировка, епта!
 
 # Пример использования
-numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+numbers = [3, 1, 4, 1, 5, 9, 2, 6]  # Твой говнокод
 sorted_numbers = sort_list(numbers)
 print(f"Исходный список: {numbers}")
 print(f"Отсортированный список: {sorted_numbers}")
+print("Вот тебе сортировка, братан!")
 ```'''
         
         elif any(word in description_lower for word in ['факториал', 'factorial']):
@@ -343,9 +373,10 @@ print(f"Отсортированный список: {sorted_numbers}")
 def factorial(n):
     """
     Вычисляет факториал числа n
+    Хуёвая рекурсия, но работает!
     """
     if n < 0:
-        return "Факториал отрицательного числа не определен"
+        return "Факториал отрицательного числа не определен, епта!"
     elif n == 0 or n == 1:
         return 1
     else:
@@ -358,6 +389,7 @@ def factorial(n):
 n = 5
 result = factorial(n)
 print(f"Факториал {n} = {result}")
+print("Вот тебе факториал, братан!")
 ```'''
         
         elif any(word in description_lower for word in ['фибоначчи', 'fibonacci']):
@@ -365,9 +397,10 @@ print(f"Факториал {n} = {result}")
 def fibonacci(n):
     """
     Вычисляет n-ое число Фибоначчи
+    Классика, блять!
     """
     if n <= 0:
-        return "Введите положительное число"
+        return "Введите положительное число, епта!"
     elif n == 1 or n == 2:
         return 1
     else:
@@ -380,6 +413,7 @@ def fibonacci(n):
 n = 10
 result = fibonacci(n)
 print(f"Число Фибоначчи под номером {n} = {result}")
+print("Вот тебе Фибоначчи, братан!")
 ```'''
         
         else:
@@ -387,14 +421,16 @@ print(f"Число Фибоначчи под номером {n} = {result}")
 def example_function(description):
     """
     Пример функции на Python
+    Блять, базовая функция, что тут сложного?
     """
     print(f"Описание задачи: {description}")
-    print("Это базовая функция. Для более сложного кода используйте платные API.")
-    return "Функция выполнена"
+    print("Это базовая функция. Для более сложного кода используй платные API, епта!")
+    return "Функция выполнена, братан!"
 
 # Пример использования
-result = example_function("ваша задача")
+result = example_function("твоя задача")
 print(result)
+print("Вот тебе пример, братан!")
 ```'''
     
     async def generate_image(self, prompt: str) -> Optional[bytes]:

@@ -19,16 +19,16 @@ class TelegramBot:
         """Обработчик команды /start"""
         user = update.effective_user
         welcome_text = f"""
-🤖 Привет, {user.first_name}! 
+🤖 Здарова, {user.first_name}! 
 
-Я ваш ИИ ассистент, работающий на **бесплатных сервисах**!
+Я твой ИИ ассистент с характером, работающий на **бесплатных сервисах**!
 
 🎯 Что я умею:
 • 💻 Генерировать код (DeepSeek, CodeLlama, WizardCoder)
 • 🧮 Решать задачи и уравнения
 • 🔍 Искать информацию
 • 🎨 Создавать изображения
-• 💬 Общаться и помогать
+• 💬 Общаться и помогать (или наебывать)
 
 🚀 Доступные модели:
 • **DeepSeek** - лучший для кода (по умолчанию)
@@ -45,6 +45,8 @@ class TelegramBot:
 /stats - статистика использования
 
 🎉 **30,000+ бесплатных запросов в месяц!**
+
+Блять, давай работать! 😄
         """
         
         keyboard = [
@@ -117,7 +119,7 @@ class TelegramBot:
         # Получаем выбранную модель пользователя или используем DeepSeek по умолчанию
         model_type = self.user_models.get(user_id, 'deepseek')
         
-        await update.message.reply_text(f"💻 Генерирую код для: {description}\n🤖 Модель: {model_type.title()}")
+        await update.message.reply_text(f"💻 Генерирую код для: {description}\n🤖 Модель: {model_type.title()}\nБлять, подожди немного!")
         
         try:
             response = await self.ai_services.generate_code(description, model_type)
@@ -128,7 +130,7 @@ class TelegramBot:
             else:
                 await update.message.reply_text(response)
         except Exception as e:
-            await update.message.reply_text(f"❌ Ошибка при генерации кода: {str(e)}")
+            await update.message.reply_text(f"❌ Блять, ошибка при генерации кода: {str(e)}")
 
     async def solve_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик команды /solve"""
@@ -146,7 +148,7 @@ class TelegramBot:
         user_id = update.effective_user.id
         model_type = self.user_models.get(user_id, 'deepseek')
         
-        await update.message.reply_text(f"🧮 Решаю задачу: {problem}\n🤖 Модель: {model_type.title()}")
+        await update.message.reply_text(f"🧮 Решаю задачу: {problem}\n🤖 Модель: {model_type.title()}\nЕпта, подожди!")
         
         try:
             response = await self.ai_services.generate_text_response(
@@ -161,7 +163,7 @@ class TelegramBot:
             else:
                 await update.message.reply_text(response)
         except Exception as e:
-            await update.message.reply_text(f"❌ Ошибка при решении задачи: {str(e)}")
+            await update.message.reply_text(f"❌ Блять, ошибка при решении задачи: {str(e)}")
 
     async def search_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик команды /search"""
@@ -179,7 +181,7 @@ class TelegramBot:
         user_id = update.effective_user.id
         model_type = self.user_models.get(user_id, 'deepseek')
         
-        await update.message.reply_text(f"🔍 Ищу информацию: {query}\n🤖 Модель: {model_type.title()}")
+        await update.message.reply_text(f"🔍 Ищу информацию: {query}\n🤖 Модель: {model_type.title()}\nБлять, подожди!")
         
         try:
             response = await self.ai_services.generate_text_response(
@@ -194,7 +196,7 @@ class TelegramBot:
             else:
                 await update.message.reply_text(response)
         except Exception as e:
-            await update.message.reply_text(f"❌ Ошибка при поиске информации: {str(e)}")
+            await update.message.reply_text(f"❌ Блять, ошибка при поиске информации: {str(e)}")
 
     async def image_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Обработчик команды /image"""
@@ -209,7 +211,7 @@ class TelegramBot:
             return
         
         description = ' '.join(context.args)
-        await update.message.reply_text(f"🎨 Создаю изображение: {description}")
+        await update.message.reply_text(f"🎨 Создаю изображение: {description}\nБлять, подожди, рисую!")
         
         try:
             response = await self.ai_services.generate_image(description)
@@ -241,7 +243,7 @@ class TelegramBot:
         if user_id not in self.conversation_history:
             self.conversation_history[user_id] = []
         
-        await update.message.reply_text(f"💬 Обрабатываю сообщение...\n🤖 Модель: {model_type.title()}")
+        await update.message.reply_text(f"💬 Обрабатываю сообщение...\n🤖 Модель: {model_type.title()}\nЕпта, подожди!")
         
         try:
             response = await self.ai_services.chat_response(message, self.conversation_history[user_id], model_type)
@@ -447,7 +449,7 @@ class TelegramBot:
         user_id = update.effective_user.id
         
         if not message.startswith('/'):
-            await update.message.reply_text("💬 Обрабатываю ваше сообщение...")
+            await update.message.reply_text("💬 Обрабатываю ваше сообщение...\nБлять, подожди!")
             
             try:
                 # Получаем выбранную модель пользователя

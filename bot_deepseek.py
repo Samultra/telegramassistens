@@ -6,12 +6,29 @@ Telegram AI Assistant Bot с DeepSeek и циничным приветствие
 
 import asyncio
 import logging
+import os
+import sys
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
 from openrouter_services import OpenRouterServices
 from config_openrouter import TELEGRAM_TOKEN, MAX_MESSAGE_LENGTH
 import io
 import re
+
+# Проверка переменных окружения для Railway
+def check_environment():
+    """Проверка необходимых переменных окружения"""
+    if not os.getenv('TELEGRAM_TOKEN'):
+        print("❌ Ошибка: TELEGRAM_TOKEN не найден в переменных окружения!")
+        print("Пожалуйста, установите переменную TELEGRAM_TOKEN в настройках Railway")
+        sys.exit(1)
+    
+    if not os.getenv('OPENROUTER_API_KEY'):
+        print("❌ Ошибка: OPENROUTER_API_KEY не найден в переменных окружения!")
+        print("Пожалуйста, установите переменную OPENROUTER_API_KEY в настройках Railway")
+        sys.exit(1)
+    
+    print("✅ Переменные окружения проверены успешно!")
 
 class DeepSeekBot:
     """Telegram бот с DeepSeek и циничным приветствием"""
@@ -445,5 +462,9 @@ class DeepSeekBot:
         application.run_polling()
 
 if __name__ == "__main__":
+    # Проверяем переменные окружения
+    check_environment()
+    
+    # Запускаем бота
     bot = DeepSeekBot()
     bot.run()

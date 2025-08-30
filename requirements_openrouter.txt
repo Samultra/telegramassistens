@@ -1,0 +1,10 @@
+# Основные библиотеки для Telegram бота
+python-telegram-bot==20.7
+requests==2.31.0
+python-dotenv==1.0.0
+
+# Версии для совместимости
+# Python 3.8+ поддерживается
+# 
+# Примечание: json, asyncio, logging, time, typing - это встроенные модули Python
+# Их не нужно устанавливать через pip

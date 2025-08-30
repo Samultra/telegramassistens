@@ -1,0 +1,26 @@
+# Telegram Bot Token (получите у @BotFather)
+TELEGRAM_TOKEN=you8444005813:AAHWEbsuT4jhavPtjodcIAWepaFhTlPicbg
+
+# === БЕСПЛАТНЫЕ ИИ СЕРВИСЫ ===
+
+# Hugging Face API Token (30,000 запросов/месяц БЕСПЛАТНО!)
+# Зарегистрируйтесь на https://huggingface.co/
+# Settings → Access Tokens → New token
+HUGGINGFACE_TOKEN=your_huggingface_token_here
+
+# Replicate API Token (500 запросов/месяц БЕСПЛАТНО!)
+# Зарегистрируйтесь на https://replicate.com/
+# Account → API Tokens → Create API token
+REPLICATE_TOKEN=your_replicate_token_here
+
+# Cohere API Token (1,000 запросов/месяц БЕСПЛАТНО!)
+# Зарегистрируйтесь на https://cohere.ai/
+# API Keys → Create API Key
+COHERE_TOKEN=your_cohere_token_here
+
+# === ПЛАТНЫЕ СЕРВИСЫ (ОПЦИОНАЛЬНО) ===
+
+# OpenAI API Key (для GPT и DALL-E) - ПЛАТНО
+# Зарегистрируйтесь на https://platform.openai.com/
+# API Keys → Create new secret key
+OPENAI_API_KEY=your_openai_api_key_here

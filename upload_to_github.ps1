@@ -33,4 +33,4 @@ Write-Host ""
 Write-Host "🌐 Открываю GitHub в браузере..." -ForegroundColor Green
 Start-Process "https://github.com"
 
-Read-Host "Нажмите Enter для продолжения..."
+Read-Host "Press Enter to continue..."
